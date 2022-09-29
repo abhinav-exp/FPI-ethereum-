@@ -1,0 +1,13 @@
+.mainscreen{
+    border-radius: 2vh;
+    background-color: red;
+    margin: auto;
+    width: 50vw;
+    border: 1vh white solid;
+    padding: 5vh;
+}
+
+.sidewall{
+    background-color: red;
+    padding: 5vh;
+}
