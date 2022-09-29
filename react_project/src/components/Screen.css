@@ -2,12 +2,29 @@
     border-radius: 2vh;
     background-color: red;
     margin: auto;
-    width: 50vw;
-    border: 1vh white solid;
-    padding: 5vh;
+    width: 60vw;
+    border: 2px white solid;
+    padding: 1vh;
 }
 
 .sidewall{
     background-color: red;
     padding: 5vh;
+}
+
+.Menu{
+    height: 50vh;
+    border: 1px white solid;
+    border-radius: 1vh;
+    margin-top: 1vh;
+    /* background-color: white; */
+}
+
+.middletext{
+    text-align: center;
+}
+
+.perc30{
+    width: 30%;
+    margin: 1.5%;
 }
