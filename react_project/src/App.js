@@ -1,23 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import {Button} from 'react-bootstrap';
+import useMetaMask from './hooks/useMetaMask';
 
 function App() {
+  // if(window.ethereum === undefined)
+  // {
+  //   return (<div>
+  //     Please install metamask
+  //   </div>)
+  // }
+
+  const { connect, disconnect, isActive, account } = useMetaMask()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Button className= "secondary" onClick={connect}>
+      Connect to MetaMask
+      </Button>
+    <div>
+      Connected account { isActive ? account : "" }
+    </div>
+    <Button className="danger" onClick={disconnect}>
+      Disconnected MetaMask
+    </Button>
     </div>
   );
 }
