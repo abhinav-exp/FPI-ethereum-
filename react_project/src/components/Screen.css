@@ -5,6 +5,7 @@
     width: 60vw;
     border: 2px white solid;
     padding: 1vh;
+    height: 90vh;
 }
 
 .sidewall{
@@ -13,7 +14,7 @@
 }
 
 .Menu{
-    height: 50vh;
+    height: 60vh;
     border: 1px white solid;
     border-radius: 1vh;
     margin-top: 1vh;
