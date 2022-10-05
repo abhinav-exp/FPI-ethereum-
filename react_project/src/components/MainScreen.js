@@ -14,13 +14,15 @@ export default function MainScreen(){
         <Button variant= "danger"  onClick={connect}> Connect to MetaMask </Button>
     </div>) : 
     (<div className='mainscreen'>
-        <Alert variant='success' className='middletext' > Connected account { account } </Alert>
-        <Alert variant='warning' className='middletext' >This project only works on "  " Network</Alert>
-        <Alert variant='info' className='middletext' >In order to change connected Accounts, Please open up metamask</Alert>
-        <Button variant= "danger" onClick={disconnect}>
-        Disconnected MetaMask
-        </Button>
-        <Menu></Menu>
+        <div className='InfoBar'>
+            <Alert variant='success' className='middletext' > Connected account { account } </Alert>
+            <Alert variant='warning' className='middletext' >This project only works on "  " Network</Alert>
+            <Alert variant='info' className='middletext' >In order to change connected Accounts, Please open up metamask</Alert>
+            <Button variant= "danger" onClick={disconnect}>
+            Disconnected MetaMask
+            </Button>
+        </div>
+        <Menu myaccount = {account} ></Menu>
     </div>)
     );
 }

@@ -2,10 +2,18 @@
     border-radius: 2vh;
     background-color: red;
     margin: auto;
-    width: 60vw;
+    width: 90vw;
     border: 2px white solid;
-    padding: 1vh;
+    padding: 1vh 1vw;
     height: 90vh;
+}
+
+.InfoBar{
+    margin: 1vh 1vw;
+    margin-left: 0vw;
+    width: 26vw;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .sidewall{
@@ -14,10 +22,14 @@
 }
 
 .Menu{
-    height: 60vh;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0vw;
+    height: 87vh;
+    width: 60vw;
     border: 1px white solid;
     border-radius: 1vh;
-    margin-top: 1vh;
+    /* margin-top: 1vh; */
     /* background-color: white; */
 }
 
@@ -28,4 +40,36 @@
 .perc30{
     width: 30%;
     margin: 1.5%;
+}
+
+img{
+    margin: 1vh;
+    width: 20vh;
+}
+
+.PersonalDetails{
+    /* float: right; */
+    width: 60vw;
+    /* margin: 4vh 3%; */
+    /* border: 1px solid white; */
+}
+
+/* .PersonalDetails button{
+    width: 100%;
+} */
+
+.ProductList{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 55vh;
+    width: 60vw;
+    white-space: nowrap;
+}
+
+.ProductCard{
+    height: 40vh;
+    width: 25vw;
+    border: 1px solid white;
+    display: inline-block;
+    vertical-align: middle;
 }
