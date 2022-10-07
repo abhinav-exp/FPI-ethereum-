@@ -45,6 +45,7 @@
 img{
     margin: 1vh;
     width: 20vh;
+    height: 20vh;
 }
 
 .PersonalDetails{
@@ -72,4 +73,20 @@ img{
     border: 1px solid white;
     display: inline-block;
     vertical-align: middle;
+}
+
+.qwe{
+    width: 30vw;
+    border-radius: 1vh;
+    height: 5vh;
+    margin-left: 15vw;
+    margin-top: 5vh;
+}
+
+.qwe2{
+    margin-top: 2vh;
+    margin-left: 15vw;
+    width: 30vw;
+    border-radius: 1vh;
+    height: 20vh;
 }

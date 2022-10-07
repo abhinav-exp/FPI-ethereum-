@@ -91,10 +91,10 @@ function RegisterProduct(props){
 
     }
 
-    return (<div> 
-        <input type="text" placeholder="Product Name" value = {ProductName}  onChange={(e) => handleProductName(e.target.value)}></input>
+    return (<div className="qweForm"> 
+        <input type="text" className="qwe" placeholder="Product Name" value = {ProductName}  onChange={(e) => handleProductName(e.target.value)}></input>
         <br></br>
-        <textarea type="text" placeholder="Product Desp" onChange={(e) => handleProductDesp(e.target.value)}></textarea>
+        <textarea type="text" className="qwe2" placeholder="Product Desp" onChange={(e) => handleProductDesp(e.target.value)}></textarea>
         <br></br>
         <Button variant="success"  onClick={handleClick} > Submit </Button>
     </div>)
