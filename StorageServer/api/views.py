@@ -6,7 +6,8 @@ from django.http import FileResponse
 # Create your views here.
 @api_view(['POST'])
 def add(request):
-    inputFile = request.FILES['FK']
+    print(request.data)
+    inputFile = request.data['FK']
     obj = FileModel(field_name = inputFile.read())
     obj.save()
     return HttpResponse(obj.pk)

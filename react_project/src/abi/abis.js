@@ -21,8 +21,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -56,8 +55,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -81,8 +79,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -101,8 +98,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "pure",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [],
@@ -115,8 +111,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -158,8 +153,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -171,6 +165,11 @@ export const FPIAbi = [
       {
         "internalType": "string",
         "name": "D",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "PicStr",
         "type": "string"
       }
     ],
@@ -190,8 +189,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -210,8 +208,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [

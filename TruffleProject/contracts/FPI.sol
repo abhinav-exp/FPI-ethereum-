@@ -58,8 +58,9 @@ contract FPI{
         }
     }
 
-    function Register_Product(string memory N, string memory D) public {
-        string[] memory P;
+    function Register_Product(string memory N, string memory D, string memory PicStr) public {
+        string[] memory P = new string[](1);
+        P[0] = PicStr;
         address[] memory O = new address[](1);
         O[0] = msg.sender;
         Product memory temp = Product(N, D, P, O);
