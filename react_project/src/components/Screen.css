@@ -42,17 +42,12 @@
     margin: 1.5%;
 }
 
-img{
-    margin: 1vh;
-    width: 20vh;
-    height: 20vh;
-}
-
 .PersonalDetails{
     /* float: right; */
     width: 60vw;
     /* margin: 4vh 3%; */
     /* border: 1px solid white; */
+    white-space: nowrap;
 }
 
 /* .PersonalDetails button{
@@ -68,11 +63,21 @@ img{
 }
 
 .ProductCard{
-    height: 40vh;
-    width: 25vw;
+    height: 50vh;
+    width: 300px;
     border: 1px solid white;
+    border-radius: 10px;
+    margin-left: 10px;
     display: inline-block;
     vertical-align: middle;
+}
+
+.ProductCard img{
+    margin: 10px;
+    margin-left: 50px;
+    width: 200px;
+    height: 20vh;
+    border-radius: 10px;
 }
 
 .qwe{
@@ -81,6 +86,7 @@ img{
     height: 5vh;
     margin-left: 15vw;
     margin-top: 5vh;
+    text-align: center;
 }
 
 .qwe2{
@@ -89,6 +95,7 @@ img{
     width: 30vw;
     border-radius: 1vh;
     height: 20vh;
+    text-align: center;
 }
 
 .qwe3{
@@ -100,4 +107,67 @@ img{
 .qwe4{
     margin-top: 2vh;
     margin-left: 15vw;
+}
+
+.qwe5{
+    width: 30vw;
+    border-radius: 1vh;
+    height: 5vh;
+    margin-left: 15vw;
+    margin-top: 2vh;
+    text-align: center;
+}
+
+.PCI{
+    margin-left: 50px;
+    
+}
+
+.PCD1{
+    margin: 20px 10px;
+    height: 55px;
+    text-align: center;
+}
+
+.PCD2{
+    margin: 20px 10px;
+    height: 100px;
+    text-align: center;
+    padding: 0 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.PCD3{
+    margin-left: 100px;
+}
+
+.NM{
+    width: 15vw;
+    margin-left: 5vw;
+    border-radius: 1vh;
+    height: 4vh;
+    text-align: center;
+}
+
+.NMR{
+    margin-left: 30vw;
+    margin-top: 3vh;
+}
+
+.MN{
+    display: inline-block;
+    margin-top: 0vh;
+    margin: 1vh;
+    width: 20vh;
+    height: 20vh;
+    border-radius: 1vh;
+    vertical-align:top;
+    border: 1px white solid;
+}
+
+.MN2{
+    display: inline-block;
+    padding-top: 3vh;
 }

@@ -3,40 +3,15 @@ import { useState, useEffect } from "react";
 import Web3 from 'web3';
 import { FPIAbi } from "../abi/abis";
 import NoPic from '../NoPic.jpg';
-import axios from "axios";
+import Alert from 'react-bootstrap/Alert'
 
-function NotRegistered(){
-    return (<div className="PersonalDetails">
-        <img src={NoPic} />
-        <Button variant="light" disabled={true} > Not Registered </Button>
-        <Button variant="warning">Register</Button>
-    </div>)
-} 
-
-function ProductCard(props){
-
-    const [ProductName, handleProductName] = useState("");
-    const [ProductDesp, handleProductDesp] = useState("");
-
-    useEffect(() => {
-        props.contAbi.methods.Get_Asset_of_No(props.productid).call()
-        .then(r => {
-            console.log(r);
-        })
-    }, [])
-
-    return (<div className="ProductCard"> r </div>)
-}
-
-function Profile(props){
+function PersonalDetailsShow(props){
 
     const [First_Name, handleFirstName] = useState("");
     const [Last_Name,  handleLastName]  = useState("");
-    const [Picstr,     handlePicstr]    = useState("");  
-    const [ProdArray, handleProdArray] = useState([]);
+    const [Picstr,     handlePicstr]    = useState(""); 
 
     useEffect(() => {
-        //Runs only on the first render
         props.contAbi.methods.Check_My_Info().call({
             from : props.myacc
         })
@@ -46,6 +21,129 @@ function Profile(props){
             handleLastName(r[1]);
             handlePicstr(r[2]);
         })
+    })
+
+    const Backend_url = process.env.REACT_APP_BACKEND_URL;
+
+    const fun = () => {
+        props.handleEditMode(true);
+    }
+
+    return (<div className="PersonalDetails">
+        <img className="MN" src={Picstr === "" ? NoPic : Backend_url + "/show/" + Picstr} alt="Profile Pic" />
+        <div className="MN2">
+            <Button variant="light" disabled={true} className="NM" > {First_Name === "" ? "[Not Avaliable]" : First_Name} </Button>
+            <Button variant="light" disabled={true} className="NM" > {Last_Name === "" ? "[Not Avaliable]" : Last_Name} </Button>
+            <br></br>
+            <Button variant="warning" className="NMR" onClick={fun} >Edit Profile</Button>
+        </div>
+    </div>)
+}
+
+function PersonalDetailsEdit(props){
+
+    const [First_Name, handleFirstName] = useState("");
+    const [Last_Name,  handleLastName]  = useState("");
+    const [Picstr,     handlePicstr]    = useState();
+    const [SubBool,    handleSubBool]   = useState(false);
+    const [SubText,    handleSubText]   = useState("Submit")
+
+    const makeTxn = (F, L, P) => {
+        props.contAbi.methods.Register_Me(F, L, P).estimateGas()
+        .then(gas => {
+            console.log(props.myacc)
+            props.contAbi.methods.Register_Me(F, L, P).send({
+                from: props.myacc,
+                gas: gas + 1000000
+            })
+            .then(e => {
+                props.handleEditMode(false);
+            })
+            .catch(e => {
+                handleSubText("Try Again");
+                handleSubBool(false)
+            })
+        })
+    }
+
+    const Backend_url = process.env.REACT_APP_BACKEND_URL;
+
+    const fun = () => {
+        handleSubBool(true)
+        if(Picstr === undefined){
+            makeTxn(First_Name, Last_Name, "");
+        }
+        else{
+            var formData = new FormData();
+            formData.append("FK", Picstr);
+            fetch(
+                Backend_url + "/add",
+                {
+                    method: 'POST',
+                    body: formData,
+                }
+            ).then(r => {
+                if(r.ok){
+                    r.text().then(a => {
+                        makeTxn(First_Name, Last_Name, a);
+                    })
+                }
+            })
+        }
+    }
+
+    return (<div className="PersonalDetails">
+    <input className="MN" type="file" onChange={e => handlePicstr(e.target.files[0])} ></input>
+    <div className="MN2">
+        <input className="NM" placeholder="First Name" onChange={e => handleFirstName(e.target.value)} ></input> 
+        <input className="NM" placeholder="Last Name" onChange={e => handleLastName(e.target.value)}  ></input> 
+        <br></br>
+        <Button variant="warning" className="NMR" onClick={fun} disabled={SubBool} >{SubText}</Button>
+    </div>
+</div>)
+}
+
+function PersonalDetails(props){
+
+    const [EditMode, handleEditMode] = useState(false);
+
+    return (!EditMode?
+        <PersonalDetailsShow myacc = {props.myacc} contAbi = {props.contAbi} handleEditMode = {handleEditMode} />:
+        <PersonalDetailsEdit myacc = {props.myacc} contAbi = {props.contAbi} handleEditMode = {handleEditMode} />)
+} 
+
+function ProductCard(props){
+
+    const [ProductName, handleProductName] = useState("");
+    const [ProductDesp, handleProductDesp] = useState("");
+    const [ProductImg,  handleProductImg] = useState("");
+
+    useEffect(() => {
+        props.contAbi.methods.Get_Asset_of_No(props.productid).call()
+        .then(r => {
+            handleProductName(r[0]);
+            handleProductDesp(r[1]);
+            handleProductImg(r[2]);
+        })
+    }, [])
+
+    const Backend_url = process.env.REACT_APP_BACKEND_URL;
+
+    return (<div className="ProductCard">
+        <img className="PCI" alt="Product Pic"  src = {ProductImg !== ""?Backend_url+"/show/"+ProductImg:NoPic} ></img>
+        <Alert variant="info" className="PCD1" >{ProductName!== ""?ProductName:"[Not Available]"}</Alert>
+        <Alert variant="info" className="PCD2"> {ProductDesp!== ""?ProductDesp.substring(0, 50) + "...":"[Not Available]"} </Alert>
+        <Button variant="success" className="PCD3" >More Info</Button>
+    </div>)
+}
+
+function Profile(props){
+
+     
+    const [ProdArray, handleProdArray] = useState([]);
+
+    useEffect(() => {
+        //Runs only on the first render
         props.contAbi.methods.Get_My_Assets_Nos().call({
             from : props.myacc
         })
@@ -57,7 +155,7 @@ function Profile(props){
       }, []); 
 
     return (<div>
-        <NotRegistered></NotRegistered>
+        <PersonalDetails myacc = {props.myacc} contAbi = {props.contAbi}  ></PersonalDetails>
         <div className="ProductList">
             {ProdArray.map(e => { 
                 return (<ProductCard contAbi = {props.contAbi} productid = {e} ></ProductCard>) 
@@ -74,45 +172,54 @@ function RegisterProduct(props){
     const [ProductName, handleProductName] = useState("");
     const [ProductDesp, handleProductDesp] = useState("");
     const [ProductPic,  handleProductPic]  = useState();
+
+    const [DisBool, handleDisBool] = useState(false);
+    const [InfoTxn, handleInfoTxn] = useState("");
     
     const Backend_url = process.env.REACT_APP_BACKEND_URL;
 
-    const handleClick = () =>{
+    const makeTxn = (Name, Desp, Pic) => {
+        handleInfoTxn("making Transaction")
+        props.contAbi.methods.Register_Product(Name, Desp, Pic).estimateGas()
+        .then(gas => {
+            props.contAbi.methods.Register_Product(ProductName, ProductDesp, Pic).send({
+                from: props.myacc,
+                gas: gas + 1000000
+            }).then(r => {
+                handleInfoTxn("Transaction Successful")
+            }).catch(r => {
+                handleInfoTxn("Tranaction Failed")
+                handleDisBool(false)
+            })
+        });
+    }
 
-        console.log(ProductPic);
-        var formData = new FormData();
-        console.log(Object.fromEntries(formData))
-        formData.append("FK", ProductPic);
-        console.log(Object.fromEntries(formData))
-        fetch(
-			Backend_url + "/add",
-			{
-				method: 'POST',
-				body: formData,
-			}
-		).then(r => {
-            if(r.ok){
-                r.text().then(a => {
-                    console.log(a)
-                    props.contAbi.methods.Register_Product(ProductName, ProductDesp, a).estimateGas()
-                    .then(gas => {
-                        console.log(gas);
-                        console.log(props.myacc)
-                        console.log(ProductName)
-                        console.log(ProductDesp)
-                        console.log(a);
-                        props.contAbi.methods.Register_Product(ProductName, ProductDesp, a).send({
-                            from: props.myacc,
-                            gas: gas + 1000000
-                        }).then(r => {
-                            console.log("product registered");
-                        }).catch(r => {
-                            console.log(r);
-                        })
-                    });
-                })
-            }
-        })
+    const handleClick = () =>{
+        handleDisBool(true);
+        handleInfoTxn("Loading ... ")
+        if(ProductPic === undefined)
+        {
+            makeTxn(ProductName, ProductDesp, "");
+        }
+        else
+        {
+            var formData = new FormData();
+            formData.append("FK", ProductPic);
+            fetch(
+                Backend_url + "/add",
+                {
+                    method: 'POST',
+                    body: formData,
+                }
+            ).then(r => {
+                if(r.ok){
+                    r.text().then(a => {
+                        makeTxn(ProductName, ProductDesp, a);
+                    })
+                }
+                handleInfoTxn("Error while uploading Image");
+            })
+        }
 
     }
 
@@ -121,15 +228,17 @@ function RegisterProduct(props){
         handleProductPic(e.target.files[0])
     }
 
-    return (<div className="qweForm"> 
-        <input type="text" className="qwe" placeholder="Product Name" value = {ProductName}  onChange={(e) => handleProductName(e.target.value)}></input>
+    return (<form className="qweForm"> 
+        <input type="text" className="qwe" placeholder="Product Name" onChange={(e) => handleProductName(e.target.value)} required></input>
         <br></br>
         <textarea type="text" className="qwe2" placeholder="Product Desp" onChange={(e) => handleProductDesp(e.target.value)}></textarea>
         <br></br>
         <input type="file" className="qwe3" onChange={(e) => fun(e)} ></input>
         <br></br>
-        <Button className="qwe4"  variant="success"  onClick={handleClick} > Submit </Button>
-    </div>)
+        <Button className="qwe4" type="submit"  variant="success" disabled={DisBool} onClick={handleClick} > Submit </Button>
+
+        <Alert className="qwe5" hidden = {(InfoTxn === "")}>{InfoTxn}</Alert>
+    </form>)
 }
 
 export default function Menu(props){
