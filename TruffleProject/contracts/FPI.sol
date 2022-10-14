@@ -112,4 +112,16 @@ contract FPI{
         PersonToProduct[SendTo][ProductNo] = true;
         return true;
     }
+
+    function Get_Authors(uint ProductNo) public view returns (address[] memory){
+        return Registered_Products[ProductNo].Owners;
+    }
+
+    function Get_Pictures(uint ProductNo) public view returns (string[] memory){
+        return Registered_Products[ProductNo].PicIds;
+    }
+
+    function Add_Picture(string memory PicStr, uint ProductNo) public {
+        Registered_Products[ProductNo].PicIds.push(PicStr);
+    }
 }

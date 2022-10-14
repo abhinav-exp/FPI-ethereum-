@@ -171,3 +171,52 @@
     display: inline-block;
     padding-top: 3vh;
 }
+
+.InfoNum{
+    width: 20vw;
+    text-align: center;
+    margin-left: 20vw;
+    border-radius: 2vh;
+}
+
+.IAI{
+    width: 20vw;
+    display: inline-block;
+    /* border: 1px solid white; */
+    /* border-radius: 1vw; */
+    height: 40vh;
+    vertical-align:top;
+    margin: 1vh 1vw;
+    overflow-y: scroll;
+}
+
+.IAI0{
+    width:35vw;
+    display: inline-block;
+    /* border: 1px solid white; */
+    /* border-radius: 1vw; */
+    margin: 1vh 1vw;
+}
+
+.IAI01{
+    height: 9vh;
+    overflow-y: scroll;
+}
+
+.IAI02{
+    height: 28vh;
+    overflow-y: scroll;
+}
+
+.IAIP{
+    display: inline-block;
+}
+
+.IAIC{
+    width: 18vw;
+    /* margin-left: 1vw; */
+}
+
+.IAIU{
+    width: 80vw;
+}

@@ -1,4 +1,4 @@
-export const FPIAbi = [
+export const FPIAbi =  [
   {
     "inputs": [
       {
@@ -21,8 +21,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -56,8 +55,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -81,8 +79,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -101,8 +98,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "pure",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [],
@@ -115,8 +111,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -158,8 +153,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -195,8 +189,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -215,8 +208,7 @@ export const FPIAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function",
-    "constant": true
+    "type": "function"
   },
   {
     "inputs": [
@@ -239,6 +231,62 @@ export const FPIAbi = [
         "type": "bool"
       }
     ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "ProductNo",
+        "type": "uint256"
+      }
+    ],
+    "name": "Get_Authors",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "ProductNo",
+        "type": "uint256"
+      }
+    ],
+    "name": "Get_Pictures",
+    "outputs": [
+      {
+        "internalType": "string[]",
+        "name": "",
+        "type": "string[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "PicStr",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "ProductNo",
+        "type": "uint256"
+      }
+    ],
+    "name": "Add_Picture",
+    "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
   }
