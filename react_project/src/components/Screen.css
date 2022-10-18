@@ -180,7 +180,7 @@
 }
 
 .IAI{
-    width: 20vw;
+    width: 19vw;
     display: inline-block;
     /* border: 1px solid white; */
     /* border-radius: 1vw; */
@@ -213,10 +213,66 @@
 }
 
 .IAIC{
-    width: 18vw;
+    width: 17vw;
     /* margin-left: 1vw; */
 }
 
 .IAIU{
-    width: 80vw;
+    /* width: 80vw; */
+}
+
+.PK{
+    margin-left: 20vw;
+    width: 20vw;
+    text-align: center;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.mega{
+    overflow-y: scroll;
+    height: 70vh;
+    /* background-color: #d67272; */
+}
+
+.OwnerCard{
+    height: 22vh;
+    /* width: 300px; */
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-left: 12vw;
+    display: inline-block;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.OwnerCard img{
+    margin: 1vh 1vw;
+    width: 20vh;
+    height: 20vh;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.OwnerDetails{
+    display: inline-block;
+}
+
+.OwnerCard button{
+    margin: 1vh 1vw;
+}
+
+.IAB{
+    margin-left: 13vw;
+    width: 10vw;
+}
+
+.Feat{
+    margin-left: 20vw;
+    margin-top: 1vh;
+}
+
+.Feat input{
+    width: 15vw;
+    margin-right: 1vw;
 }
