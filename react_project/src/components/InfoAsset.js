@@ -33,9 +33,28 @@ const OwnerCard = (props) => {
 }
 
 const TransferProduct = (props) => {
+
+    const [TransferAddr, handleTranferAddr] = useState("");
+    const [btnText,      handleBtnText]     = useState("Submit");
+
+    const fun = () => {
+        try {
+            props.contAbi.methods.Transfer_Product(props.enquiry, TransferAddr).estimateGas()
+            .then(gas => {
+                props.contAbi.methods.Transfer_Product(props.enquiry, TransferAddr).send({
+                    from : props.myacc,
+                    gas : gas + 1000000
+                })
+            })
+        }
+        catch(e) {
+            handleBtnText("Try Again !")
+        }
+    }
+
     return (<div className='Feat' >
-        <input type="text" placeholder='Address To Transfer Ownship To'></input>
-        <Button variant='warning' >Submit</Button>
+        <input type="text" placeholder='Address To Transfer Ownship To' onChange={e => handleTranferAddr(e.target.value)} ></input>
+        <Button variant='warning' onClick={fun} >{btnText}</Button>
     </div>)
 }
 
@@ -176,8 +195,8 @@ export default function InfoAsset(props){
 
     const Features = [
         <div></div>, 
-        <TransferProduct></TransferProduct>, 
-        <AddPictures myacc = {props.myacc} contAbi = {props.contAbi} enquiry = {props.enquiry} ></AddPictures>
+        <TransferProduct myacc = {props.myacc} contAbi = {props.contAbi} enquiry = {props.enquiry}></TransferProduct>, 
+        <AddPictures     myacc = {props.myacc} contAbi = {props.contAbi} enquiry = {props.enquiry}></AddPictures>
     ]
 
     const funTransferProduct = () => {
