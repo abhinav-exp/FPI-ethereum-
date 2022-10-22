@@ -6,6 +6,8 @@ import Alert from 'react-bootstrap/Alert'
 import Profile from "./Profile";
 import InfoAsset from "./InfoAsset";
 
+const ExtraGas = parseInt(process.env.REACT_APP_EXTRA_AMOUNT) 
+
 function RegisterProduct(props){
     const [ProductName, handleProductName] = useState("");
     const [ProductDesp, handleProductDesp] = useState("");
@@ -22,7 +24,7 @@ function RegisterProduct(props){
         .then(gas => {
             props.contAbi.methods.Register_Product(ProductName, ProductDesp, Pic).send({
                 from: props.myacc,
-                gas: gas + 1000000
+                gas: gas + ExtraGas
             }).then(r => {
                 handleInfoTxn("Transaction Successful")
             }).catch(r => {

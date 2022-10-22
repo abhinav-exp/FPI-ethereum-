@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import NoPic from '../NoPic.jpg';
 import { Button } from "react-bootstrap";
 
+const ExtraGas = parseInt(process.env.REACT_APP_EXTRA_AMOUNT) 
+
 const OwnerCard = (props) => {
     const [First_Name, handleFirstName] = useState("");
     const [Last_Name,  handleLastName]  = useState("");
@@ -16,7 +18,6 @@ const OwnerCard = (props) => {
             handleLastName(r[1]);
             handlePicstr(r[2]);
         })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     })
 
     const Backend_url = process.env.REACT_APP_BACKEND_URL;
@@ -43,7 +44,7 @@ const TransferProduct = (props) => {
             .then(gas => {
                 props.contAbi.methods.Transfer_Product(props.enquiry, TransferAddr).send({
                     from : props.myacc,
-                    gas : gas + 1000000
+                    gas : gas + ExtraGas
                 })
             })
         }
@@ -80,7 +81,7 @@ const AddPictures = (props) => {
                     .then(gas => {
                         props.contAbi.methods.Add_Picture(a, props.enquiry).send({
                             from : props.myacc,
-                            gas : gas + 1000000
+                            gas : gas + ExtraGas
                         })
                     })
                 })
@@ -116,7 +117,7 @@ export default function InfoAsset(props){
         let ans = []
         let count = 0
         let l = res.length;
-        for(let i=0; i<l; i++)
+        for(let i=l-1; i>=0; i--)
         {
             if(res[i] === '')
                 count++;
@@ -136,6 +137,15 @@ export default function InfoAsset(props){
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
+    const OwnFun = (r) => {
+        for(let i=0; i<r.length; i++)
+        {
+            if(parseInt(r[i]) === parseInt(props.enquiry)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     useEffect(() => {
         console.log("useEffect called");
@@ -147,7 +157,7 @@ export default function InfoAsset(props){
         else{
             console.log("else called")
             handleErrorBool(false);
-            handleOwnershipBool(false);
+            // handleOwnershipBool(false);
             console.log("setting own false")
             console.log(props.enquiry);
             props.contAbi.methods.Get_Asset_of_No(props.enquiry).call()
@@ -163,15 +173,7 @@ export default function InfoAsset(props){
                 })
                 .then(r => {
                     console.log(r)
-                    for(let i=0; i<r.length; i++)
-                    {
-                        if(parseInt(r[i]) === parseInt(props.enquiry)){
-                            handleOwnershipBool(true);
-                            console.log("setting own true")
-                            console.log(props.enquiry)
-                            break;
-                        }
-                    }
+                    handleOwnershipBool(OwnFun(r));
                 })
 
                 props.contAbi.methods.Get_Pictures(props.enquiry).call()
@@ -185,11 +187,13 @@ export default function InfoAsset(props){
             })
             .catch(r => {
                 console.log(r);
+                console.log("catcing error")
                 handleErrorBool(true);
                 // handleLoadBool(false);
             })
         }
-    }, [props.enquiry])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.enquiry, props.myacc])
 
     const Backend_url = process.env.REACT_APP_BACKEND_URL;
 

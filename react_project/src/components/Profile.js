@@ -3,6 +3,8 @@ import Alert from 'react-bootstrap/Alert'
 import { Button } from "react-bootstrap";
 import NoPic from '../NoPic.jpg';
 
+const ExtraGas = parseInt(process.env.REACT_APP_EXTRA_AMOUNT) 
+
 function PersonalDetailsShow(props){
 
     const [First_Name, handleFirstName] = useState("");
@@ -20,7 +22,7 @@ function PersonalDetailsShow(props){
             handlePicstr(r[2]);
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [props.myacc])
 
     const Backend_url = process.env.REACT_APP_BACKEND_URL;
 
@@ -53,7 +55,7 @@ function PersonalDetailsEdit(props){
             console.log(props.myacc)
             props.contAbi.methods.Register_Me(F, L, P).send({
                 from: props.myacc,
-                gas: gas + 1000000
+                gas: gas + ExtraGas
             })
             .then(e => {
                 props.handleEditMode(false);
@@ -125,7 +127,7 @@ function ProductCard(props){
             handleProductImg(r[2]);
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    })
 
     const Backend_url = process.env.REACT_APP_BACKEND_URL;
 
@@ -153,10 +155,10 @@ export default function Profile(props){
         })
         .then((r) => {
             handleProdArray(r);
-            // console.log(r);
+            console.log(r);
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []); 
+      }, [props.myacc]); 
 
     return (<div>
         <PersonalDetails myacc = {props.myacc} contAbi = {props.contAbi}  ></PersonalDetails>

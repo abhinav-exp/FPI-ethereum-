@@ -5,16 +5,18 @@ import {useWeb3React } from '@web3-react/core';
 export const MetaMaskContext = React.createContext(null)
 
 export const MetaMaskProvider  = ({children }) => {
+    // eslint-disable-next-line
     const {activate, account, library, connector, active, deactivate} = useWeb3React()
 
     const [isActive, setIsActive] = useState(false);
+    // eslint-disable-next-line
     const [shouldDisable, setShouldDisable] = useState(false)
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         connect().then(val => {
             setIsLoading(false);
-        })
+        }) // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleIsActive = useCallback(() => {
@@ -55,6 +57,7 @@ export const MetaMaskProvider  = ({children }) => {
             disconnect,
             shouldDisable
         }),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [isActive, isLoading, shouldDisable, account]
     )
 

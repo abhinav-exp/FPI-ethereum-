@@ -238,10 +238,11 @@
 
 .OwnerCard{
     height: 22vh;
-    /* width: 300px; */
+    width: 40vw;
     border: 1px solid white;
     border-radius: 10px;
-    margin-left: 12vw;
+    margin-left: 10vw;
+    margin-top: 2vh;
     display: inline-block;
     vertical-align: middle;
     display: inline-block;
